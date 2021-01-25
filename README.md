@@ -1,2 +1,2 @@
-# Team-A
-Spring Project Team A
+# team-alpha
+Spring Project Team Alpha
