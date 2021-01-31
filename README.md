@@ -1,2 +1,2 @@
-# team-alpha
-Spring Project Team Alpha
+# PROJECT-GLFP
+Gyungeui Line Forest Park
