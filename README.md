@@ -1,2 +1,5 @@
 # PROJECT-GLFP
-Gyungeui Line Forest Park
+<p align="center">
+    <img width="200px;" src="./images/logo.png"/>
+</p>
+Gyungeui Line Forest Park 
