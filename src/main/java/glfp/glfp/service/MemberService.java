@@ -40,6 +40,7 @@ public class MemberService {
                 member.setUserPasswd(memberDto.getUserPasswd());
                 member.setUserAccount(memberDto.getUserAccount());
                 memberRepository.save(member);
+
             });
         }catch(Exception e){
 

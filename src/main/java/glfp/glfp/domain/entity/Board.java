@@ -26,49 +26,46 @@ public class Board {
     @JoinColumn(name = "user_id")
     private Member fkId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_sex")
-    private Member fkSex;
-
-
     @Column(length = 30, nullable = false)
     private String postTitle;
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 15, updatable = false, nullable = false)
     private LocalDateTime postCreatedTime;
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 15)
     private LocalDateTime postModifiedTime;
-
 
     @Column(nullable = false)
     private int matchStatus;
 
     @Column(nullable = false)
-    private String boardId;
+    private Long boardId;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
 
     @Builder
-    public Board(Long id, Member fkId, Member fkSex, String postTitle, LocalDateTime postCreatedTime, LocalDateTime postModifiedTime,int matchStatus, String boardId) {
+    public Board(Long id, Member fkId, String postTitle, LocalDateTime postCreatedTime, LocalDateTime postModifiedTime,int matchStatus, Long boardId,String content) {
         this.id = id;
         this.fkId = fkId;
-        this.fkSex = fkSex;
         this.postTitle = postTitle;
         this.postCreatedTime = postCreatedTime;
         this.postModifiedTime = postModifiedTime;
         this.matchStatus = matchStatus;
         this.boardId = boardId;
+        this.content = content;
     }
 
     public BoardDto toDto(Board board){
         BoardDto boardDto = BoardDto.builder()
                 .id(board.getId())
                 .fkId(board.getFkId())
-                .fkSex(board.getFkSex())
                 .postTitle(board.getPostTitle())
                 .postCreatedTime(board.getPostCreatedTime())
                 .postModifiedTime(board.getPostModifiedTime())
                 .matchStatus(board.getMatchStatus())
                 .boardId(board.getBoardId())
+                .content(board.getContent())
                 .build();
         return boardDto;
     }

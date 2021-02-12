@@ -16,36 +16,35 @@ import java.time.LocalDateTime;
 public class BoardDto {
     private Long id;
     private Member fkId;
-    private Member fkSex;
     private String postTitle;
     private LocalDateTime postCreatedTime;
     private LocalDateTime postModifiedTime;
     private int matchStatus;
-    private String boardId;
-
+    private Long boardId;
+    private String content;
     public Board toEntity(BoardDto boardDto){
         Board build = Board.builder()
                 .id(boardDto.getId())
                 .fkId(boardDto.getFkId())
-                .fkSex(boardDto.getFkSex())
                 .postTitle(boardDto.getPostTitle())
                 .postCreatedTime(boardDto.getPostCreatedTime())
                 .postModifiedTime(boardDto.getPostModifiedTime())
                 .matchStatus(boardDto.getMatchStatus())
                 .boardId(boardDto.getBoardId())
+                .content(boardDto.getContent())
                 .build();
         return build;
     }
     @Builder
-    public BoardDto(Long id, Member fkId, Member fkSex, String postTitle, LocalDateTime postCreatedTime, LocalDateTime postModifiedTime, int matchStatus, String boardId) {
+    public BoardDto(Long id, Member fkId, String postTitle, LocalDateTime postCreatedTime, LocalDateTime postModifiedTime, int matchStatus, Long boardId,String content) {
         this.id = id;
         this.fkId = fkId;
-        this.fkSex = fkSex;
         this.postTitle = postTitle;
         this.postCreatedTime = postCreatedTime;
         this.postModifiedTime = postModifiedTime;
         this.matchStatus = matchStatus;
         this.boardId = boardId;
+        this.content = content;
     }
 
 
