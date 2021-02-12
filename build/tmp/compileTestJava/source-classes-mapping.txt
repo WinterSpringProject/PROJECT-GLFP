@@ -1,2 +1,0 @@
-glfp/glfp/GlfpApplicationTests.java
- glfp.glfp.GlfpApplicationTests
