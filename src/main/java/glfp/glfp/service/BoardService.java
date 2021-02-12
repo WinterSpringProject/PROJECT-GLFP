@@ -19,21 +19,21 @@ public class BoardService {
     }
 
     @Transactional
-    public List<BoardDto> getBoardList(String bId){
+    public List<BoardDto> getBoardList(Long bId){
         List<Board> boardList = boardRepository.findAll();
         List<BoardDto> boardDtoList = new ArrayList<>();
 
-        for(Board board : boardList){
-            if(board.getBoardId().equals(bId)) {
+        for(Board board : boardList){       // 함수화하여 최적화할 수 있음
+            if(board.getBoardId() == bId) {
                 BoardDto boardDto = BoardDto.builder()
                         .id(board.getId())
                         .fkId(board.getFkId())
-                        .fkSex(board.getFkSex())
                         .postTitle(board.getPostTitle())
                         .postCreatedTime(board.getPostCreatedTime())
                         .postModifiedTime(board.getPostModifiedTime())
                         .matchStatus(board.getMatchStatus())
                         .boardId(board.getBoardId())
+                        .content(board.getContent())
                         .build();
                 boardDtoList.add(boardDto);
             }
@@ -48,7 +48,7 @@ public class BoardService {
     }
 
     @Transactional
-    public Long join(BoardDto boardDto){
+    public Long savePost(BoardDto boardDto){
         Board board = boardDto.toEntity(boardDto);
         boardRepository.save(board);
         return board.getId();
@@ -62,13 +62,11 @@ public class BoardService {
                 Board board = res.get();
                 board.setId(boardDto.getId());
                 board.setFkId(boardDto.getFkId());
-                board.setFkSex(boardDto.getFkSex());
                 board.setPostTitle(boardDto.getPostTitle());
-                board.setPostCreatedTime(boardDto.getPostCreatedTime());
                 board.setPostModifiedTime(boardDto.getPostModifiedTime());
                 board.setMatchStatus(boardDto.getMatchStatus());
                 board.setBoardId(boardDto.getBoardId());
-
+                board.setContent(boardDto.getContent());
                 boardRepository.save(board);
             });
         }catch(Exception e){
