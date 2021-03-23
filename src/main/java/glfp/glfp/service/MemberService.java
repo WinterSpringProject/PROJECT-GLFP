@@ -3,17 +3,23 @@ package glfp.glfp.service;
 import glfp.glfp.domain.entity.Member;
 import glfp.glfp.domain.repository.MemberRepository;
 import glfp.glfp.dto.MemberDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+
 
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
+
     }
 
     @Transactional

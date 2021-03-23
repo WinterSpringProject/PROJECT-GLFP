@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	compileOnly 'org.projectlombok:lombok'
 	compile "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17"
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
