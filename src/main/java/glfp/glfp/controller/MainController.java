@@ -2,9 +2,10 @@ package glfp.glfp.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+@CrossOrigin(origins = "*")
 @Controller     //TODO: 추후 restController로 수정
 public class MainController {
 

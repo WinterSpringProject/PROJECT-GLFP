@@ -15,6 +15,7 @@ import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Random;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")

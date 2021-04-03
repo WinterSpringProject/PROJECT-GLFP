@@ -5,6 +5,8 @@ import glfp.glfp.dto.MemberDto;
 import jdk.jshell.Snippet;
 import lombok.*;
 import org.apache.tomcat.jni.Local;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -15,7 +17,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)  // 시간에 대한 정보를 저장
-
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +30,11 @@ public class Board {
     @Column(length = 30, nullable = false)
     private String postTitle;
 
-    @Column(length = 15, updatable = false, nullable = false)
+    @CreatedDate
+    @Column(length = 15, updatable = false)
     private LocalDateTime postCreatedTime;
 
+    @LastModifiedDate
     @Column(length = 15)
     private LocalDateTime postModifiedTime;
 
