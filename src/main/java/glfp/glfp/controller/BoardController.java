@@ -55,8 +55,12 @@ public class BoardController {
     @GetMapping("/paging/{board_id}")  //페이지네이션
     public ResponseEntity<Page<Board>> pagenation(@PathVariable("board_id") Long bId, @PageableDefault Pageable pageable) {
         Page<Board> pageList = boardService.getPageList(pageable, bId);
-
         return new ResponseEntity<>(pageList, HttpStatus.OK);
     }
 
+    @GetMapping("{board_id}/search") //현재는 게시물의 title을 이용하여
+    public ResponseEntity<List> search(@PathVariable("board_id") Long bId, @RequestParam(value = "keyword") String keyword, @RequestBody Long SearchType) {
+        List<BoardDto> boardDtoList = boardService.searchPosts(keyword, bId, SearchType);
+        return new ResponseEntity<>(boardDtoList, HttpStatus.OK);
+    }
 }

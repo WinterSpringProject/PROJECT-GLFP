@@ -22,9 +22,5 @@ public class GlfpApplication  {
 		return new HiddenHttpMethodFilter();
 	}
 
-
-
-
-
 }
 

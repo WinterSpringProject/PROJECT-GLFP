@@ -81,11 +81,29 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-
     @Transactional
     public Page<Board> getPageList(Pageable pageable, Long bId) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1); // page는 index 처럼 0부터 시작
         pageable = PageRequest.of(page, 10);
         return boardRepository.findByBoardId(bId, pageable);
+    }
+    
+    @Transactional
+    public List<BoardDto> searchPosts(String keyword, Long bId, Long SearchType)
+    {
+        List<Board> boards = null;
+        if (SearchType == 0) //글 제목
+            boards = boardRepository.findByPostTitleContaining(keyword);
+        else if (SearchType == 1) //글 내용
+            boards = boardRepository.findByContentContaining(keyword);
+//        else
+//            boards = boardRepository.findByNicknameContaining(keyword);
+        List<BoardDto> boardDtoList = new ArrayList<>();
+        if (boards.isEmpty()) return boardDtoList;
+        for(Board board : boards){
+            if (board.getBoardId() == bId)
+                boardDtoList.add(board.toDto(board));
+        }
+        return boardDtoList;
     }
 }
