@@ -4,6 +4,9 @@ import glfp.glfp.domain.entity.Member;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -14,7 +17,7 @@ public class MemberDto {
     private String userName;
     private int userSex;
     private String userEmail;
-    private String role;
+    private List<String> roles;
 
     public Member toEntity(MemberDto memberDto){
         Member build = Member.builder()
@@ -24,21 +27,20 @@ public class MemberDto {
                 .userName(memberDto.getUserName())
                 .userSex(memberDto.getUserSex())
                 .userEmail(memberDto.getUserEmail())
-                .role(memberDto.getRole())
+                .roles(memberDto.getRoles())
                 .build();
         return build;
     }
 
     @Builder
-    public MemberDto(Long id, String userAccount, String userPasswd, String userName, int userSex, String userEmail, String role) {
+    public MemberDto(Long id, String userAccount, String userPasswd, String userName, int userSex, String userEmail, List<String> roles) {
         this.id = id;
         this.userAccount = userAccount;
         this.userPasswd = userPasswd;
         this.userName = userName;
         this.userSex = userSex;
         this.userEmail = userEmail;
-        this.role = role;
+        this.roles = roles;
     }
 
-    //private LocalDateTime createdTime;
 }

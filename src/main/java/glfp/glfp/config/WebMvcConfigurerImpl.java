@@ -12,5 +12,5 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("*");
     }
-
+    //TODO : 전체에 대해서 허용하는 것이 아닌 필요한 URL을 등록하기
 }
