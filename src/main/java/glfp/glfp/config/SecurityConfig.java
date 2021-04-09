@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/doLogout") //클라이언트에서 로그아웃을 요청할 때 사용하는 url
                 .logoutSuccessUrl("/login");    //로그아웃 성공시 /login으로 redirect
+
     }
 
     @Bean
