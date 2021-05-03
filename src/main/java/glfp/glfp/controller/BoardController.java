@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -36,6 +37,7 @@ public class BoardController {
 
     @PostMapping("/post")    //등록
     public ResponseEntity<String> register(@RequestBody BoardDto boardDto){
+
         boardService.savePost(boardDto);
         return new ResponseEntity<>(boardDto.getPostTitle(), HttpStatus.OK);
     }

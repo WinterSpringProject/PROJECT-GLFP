@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)  // 시간에 대한 정보를 저장
-
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

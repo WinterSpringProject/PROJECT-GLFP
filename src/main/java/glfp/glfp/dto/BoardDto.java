@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class BoardDto {
+
     private Long id;
     private Member fkId;
     private String postTitle;
@@ -22,6 +23,7 @@ public class BoardDto {
     private int matchStatus;
     private Long boardId;
     private String content;
+
     public Board toEntity(BoardDto boardDto){
         Board build = Board.builder()
                 .id(boardDto.getId())
