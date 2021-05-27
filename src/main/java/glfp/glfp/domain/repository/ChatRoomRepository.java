@@ -64,11 +64,11 @@ public class ChatRoomRepository {
     public void enterChatRoom(String roomId) {
         //redis에 topic을 만들고 pub/sub 통신을 위해 리스너를 설정
         ChannelTopic topic = topics.get(roomId);
-        if (topic == null) {
+        if (topic == null)
             topic = new ChannelTopic(roomId);
-            redisMessageListener.addMessageListener(redisSubscriber,topic);
-            topics.put(roomId, topic);
-        }
+        redisMessageListener.addMessageListener(redisSubscriber,topic);
+        topics.put(roomId, topic);
+
     }
 
     public ChannelTopic getTopic(String roomId) {
