@@ -1,6 +1,5 @@
 package glfp.glfp.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -30,12 +29,9 @@ public class SwaggerConfig {
                 .apiInfo(this.apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors
-                        //TODO: controller가 존재하는 패키지를 basepackage로 지정
                 .basePackage("glfp.glfp.controller"))
-                //TODO: apis() 로 선택된 api 중 path 조건을 세분화
                 .paths(PathSelectors.ant("/**"))
                 .build();
     }
-
 
 }

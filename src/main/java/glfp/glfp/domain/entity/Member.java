@@ -1,53 +1,58 @@
 package glfp.glfp.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import glfp.glfp.dto.MemberDto;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
-public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter @Setter
+@Builder
+@AllArgsConstructor
+@ToString(of = {"id", "userPasswd", "username", "userSex", "userEmail", "nickname", "activated"})
+public class Member extends BaseEntity {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
-    @Column(length = 15, nullable = false)
-    private String userAccount;
+    @Column(length = 15, nullable = false, unique = true)
+    private String username;
+
     @Column(length = 100, nullable = false)
     private String userPasswd;
-    @Column(length = 15, nullable = false)
-    private String userName;
+
     @Column(nullable = false)
     private int userSex;
+
     @Column(length = 20, nullable = false)
     private String userEmail;
-    @Column(nullable = false)
-    private String role;
 
-    @Builder
-    public Member (Long id,String userAccount, String userPasswd, String userName,int userSex, String userEmail, String role){
-        this.id = id;
-        this.userAccount = userAccount;
-        this.userPasswd = userPasswd;
-        this.userName = userName;
-        this.userSex = userSex;
-        this.userEmail = userEmail;
-        this.role = role;
-    }
+    @Column(length = 20, nullable = false)
+    private String nickname;
+
+    @JsonIgnore
+    @Column(name = "activated")
+    private boolean activated;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private Set<Authority> authorities;
 
     public MemberDto toDto(Member member){
         MemberDto memberDto = MemberDto.builder()
                 .id(member.getId())
-                .userAccount(member.getUserAccount())
                 .userPasswd(member.getUserPasswd())
-                .userName(member.getUserName())
+                .nickname(member.getNickname())
+                .username(member.getUsername())
                 .userSex(member.getUserSex())
                 .userEmail(member.getUserEmail())
                 .build();
         return memberDto;
     }
+
 }
